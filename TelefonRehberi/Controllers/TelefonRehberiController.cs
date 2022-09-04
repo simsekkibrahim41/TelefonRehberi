@@ -31,7 +31,11 @@ namespace TelefonRehberi.Controllers
         // GET: TelefonRehberi/Create
         public IActionResult AddOrEdit(int id=0)
         {
-            return View(new TelefonRehberi.Models.TelefonRehberi());
+            if (id == 0)
+                return View(new TelefonRehberi.Models.TelefonRehberi());
+            else
+                return View(_context.TelefonRehberleri.Find(id));
+
         }
 
         // POST: TelefonRehberi/Create
@@ -43,8 +47,11 @@ namespace TelefonRehberi.Controllers
         {
             if (ModelState.IsValid)
             {
+                if(telefonRehberi.RehberId==0)
                 _context.Add(telefonRehberi);
-                 await _context.SaveChangesAsync();
+                else
+                    _context.Update(telefonRehberi);
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(telefonRehberi);
@@ -53,19 +60,12 @@ namespace TelefonRehberi.Controllers
         // GET: TelefonRehberi/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.TelefonRehberleri == null)
-            {
-                return NotFound();
-            }
+            var sil = await _context.TelefonRehberleri.FindAsync(id);
+            _context.TelefonRehberleri.Remove(sil);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
 
-            var telefonRehberi = await _context.TelefonRehberleri
-                .FirstOrDefaultAsync(m => m.RehberId == id);
-            if (telefonRehberi == null)
-            {
-                return NotFound();
-            }
 
-            return View(telefonRehberi);
         }
 
     }
