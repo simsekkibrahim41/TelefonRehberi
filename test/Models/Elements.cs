@@ -26,7 +26,9 @@ namespace Web.SeleniumTest.TelefonRehberi.Models
 
         #region XPath
         public string EklenenKisiAdi { get; set; }
-        public string  GuncelleSayfasinaGit { get; set; }
+        public string GuncelleSayfasinaGit { get; set; }
+        public string SilmeIslemi { get; set; }
+        public string GoBackList { get; set; }
         #endregion
 
 

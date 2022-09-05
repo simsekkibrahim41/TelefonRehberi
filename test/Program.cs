@@ -24,6 +24,7 @@ namespace Web.SeleniumTest.TelefonRehberi
             #region Element ->Id
             elements.ClickYeni_Kayit = "yeni_kayit";
             elements.ClickSave = "save";
+            elements.ClickGoBack = "goback";
 
             elements.txtAd = "txt_ad";
             elements.txtSoyad = "txt_soyad";
@@ -37,6 +38,7 @@ namespace Web.SeleniumTest.TelefonRehberi
             #region Xpath
             elements.EklenenKisiAdi = "//tbody/tr[1]/td[1]";
             elements.GuncelleSayfasinaGit = "//tbody/tr[1]/td[6]/a[1]";
+            elements.SilmeIslemi = "//tbody/tr[1]/td[6]/a[2]";
 
             #endregion
 
@@ -56,6 +58,7 @@ namespace Web.SeleniumTest.TelefonRehberi
             driver.FindElement(By.Id(elements.ClickYeni_Kayit)).Click();
 
             #region Veri Girişi - Kaydetme işlemi
+
             Console.WriteLine("Yeni Kişi Bilgileri Giriliyor");
 
             driver.FindElement(By.Id(elements.txtAd)).SendKeys(telefonRehberi.Ad);//Ad alanına kişi bilgileri girliyor..
@@ -95,6 +98,8 @@ namespace Web.SeleniumTest.TelefonRehberi
             driver.FindElement(By.Id(elements.txtFaxNo)).Clear();
             driver.FindElement(By.Id(elements.txtEmail)).Clear();
 
+          
+
             Console.WriteLine("Yeni Kişi Bilgileri Giriliyor");
             driver.FindElement(By.Id(elements.txtAd)).SendKeys(telefonRehberi.Ad);//Ad alanına kişi bilgileri girliyor..
             driver.FindElement(By.Id(elements.txtSoyad)).SendKeys(telefonRehberi.Soyad);//Soyad alanına kişi bilgileri girliyor..
@@ -102,18 +107,39 @@ namespace Web.SeleniumTest.TelefonRehberi
             driver.FindElement(By.Id(elements.txtFaxNo)).SendKeys(telefonRehberi.Fax_Numarasi);//Fax alanına kişi bilgileri girliyor..
             driver.FindElement(By.Id(elements.txtEmail)).SendKeys(telefonRehberi.E_Mail);//Email alanına kişi bilgileri girliyor..
 
+           
+
             Console.WriteLine("Yeni Kişi Güncelleniyor");
             driver.FindElement(By.Id(elements.ClickSave)).Click();
+
+            
 
             #endregion
 
             #region Silme ilemi
 
+            Console.WriteLine("Silme İşlemi Test Ediliyor");
+            driver.FindElement(By.XPath(elements.SilmeIslemi)).Click();
+            //Thread.Sleep(1000);
 
-
+            driver.SwitchTo().Alert().Accept();//sayfada çıkan alert'i kabul et
+            Console.WriteLine("Silme Testi Başaryla Sonuçlandı");
 
             #endregion
 
+            #region GoBackList Button
+
+            Console.WriteLine("Listeye Geri Dön Butonu Test Ediliyor...");
+            Console.WriteLine("Kişi Bilgileri Sayfasına Yönlendiriliyor...");
+            driver.FindElement(By.XPath(elements.GuncelleSayfasinaGit)).Click();
+
+            Thread.Sleep(1500);
+            driver.FindElement(By.Id(elements.ClickGoBack)).Click();
+            Console.WriteLine("Test Başarılı");
+            Thread.Sleep(2000);
+            #endregion
+
+            driver.Quit();
 
 
 
