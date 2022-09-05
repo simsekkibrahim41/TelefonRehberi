@@ -21,18 +21,18 @@ namespace TelefonRehberi.Controllers
         // GET: TelefonRehberi
         public async Task<IActionResult> Index()
         {
-              return _context.TelefonRehberleri != null ? 
-                          View(await _context.TelefonRehberleri.ToListAsync()) :
-                          Problem("Entity set 'TelefonRehberiContext.TelefonRehberleri'  is null.");
+            return _context.TelefonRehberleri != null ?
+                        View(await _context.TelefonRehberleri.OrderByDescending(x => x.RehberId).ToListAsync()) :
+                        Problem("Entity set 'TelefonRehberiContext.TelefonRehberleri'  is null.");
         }
 
-       
+
 
         // GET: TelefonRehberi/Create
-        public IActionResult AddOrEdit(int id=0)
+        public IActionResult AddOrEdit(int id = 0)
         {
             if (id == 0)
-                return View(new TelefonRehberi.Models.TelefonRehberi());
+                return View(new Rehber());
             else
                 return View(_context.TelefonRehberleri.Find(id));
 
@@ -43,12 +43,12 @@ namespace TelefonRehberi.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEdit([Bind("RehberId,Ad,Soyad,Telefon_Numarasi,Fax_Numarasi,E_Mail")] TelefonRehberi.Models.TelefonRehberi telefonRehberi)
+        public async Task<IActionResult> AddOrEdit([Bind("RehberId,Ad,Soyad,Telefon_Numarasi,Fax_Numarasi,E_Mail")] Rehber telefonRehberi)
         {
             if (ModelState.IsValid)
             {
-                if(telefonRehberi.RehberId==0)
-                _context.Add(telefonRehberi);
+                if (telefonRehberi.RehberId == 0)
+                    _context.Add(telefonRehberi);
                 else
                     _context.Update(telefonRehberi);
                 await _context.SaveChangesAsync();

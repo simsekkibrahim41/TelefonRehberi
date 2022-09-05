@@ -13,7 +13,7 @@ namespace TelefonRehberi.Models
         }
 
 
-        public DbSet<TelefonRehberi> TelefonRehberleri { get; set; }
+        public DbSet<Rehber> TelefonRehberleri { get; set; }
 
 
     }

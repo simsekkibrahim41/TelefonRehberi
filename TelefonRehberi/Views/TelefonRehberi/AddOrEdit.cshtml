@@ -1,4 +1,4 @@
-﻿@model TelefonRehberi
+﻿@model Rehber
 
 @{
     ViewData["Title"] = "Create";
@@ -17,13 +17,13 @@
             <div class="form-row row">
                 <div class="form-group col-md-3">
                     <label asp-for="Ad" class="control-label"></label>
-                    <input asp-for="Ad" class="form-control" />
+                    <input asp-for="Ad" id="txt_ad" class="form-control" />
                 <span asp-validation-for="Ad" class="text-danger"></span>
                 </div>
                 
                 <div class="form-group col-md-3">
                 <label asp-for="Soyad" class="control-label"></label>
-                <input asp-for="Soyad" class="form-control" />
+                <input asp-for="Soyad" id="txt_soyad" class="form-control" />
                 <span asp-validation-for="Soyad" class="text-danger"></span>
                 </div>
             </div>
@@ -32,13 +32,13 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                 <label asp-for="Telefon_Numarasi" class="control-label"></label>
-                <input asp-for="Telefon_Numarasi" class="form-control" />
+                    <input asp-for="Telefon_Numarasi" id="txt_telno" class="form-control" />
                 <span asp-validation-for="Telefon_Numarasi" class="text-danger"></span>
                 </div>
                 <br>
                 <div class="form-group col-md-6">
                 <label asp-for="Fax_Numarasi" class="control-label"></label>
-                <input asp-for="Fax_Numarasi" class="form-control" />
+                    <input asp-for="Fax_Numarasi" id="txt_faxno" class="form-control" />
                 <span asp-validation-for="Fax_Numarasi" class="text-danger"></span>
                 </div>
             </div>          
@@ -46,17 +46,17 @@
             
             <div class="form-group col-md-6">
                 <label asp-for="E_Mail" class="control-label"></label>
-                <input asp-for="E_Mail" class="form-control" />
+                <input asp-for="E_Mail" id="txt_email" class="form-control" />
                 <span asp-validation-for="E_Mail" class="text-danger"></span>
             </div>
 
             <br>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <input style="float:left" type="submit" value="Kaydet" class="btn btn-primary btn-block col-md-6" />
+                    <input id="save" style="float:left" type="submit" value="Kaydet" class="btn btn-primary btn-block col-md-6" />
                 </div>
                 <div class ="form-group col-md-6">
-                    <a asp-action="Index" class="btn btn-secondary btn-block col-md-6"><i class="fa fa-table"></i> Listeye Geri Dön</a>
+                    <a asp-action="Index" id="goback" class="btn btn-secondary btn-block col-md-6"><i class="fa fa-table"></i> Listeye Geri Dön</a>
                 </div>
             </div>
         </form>

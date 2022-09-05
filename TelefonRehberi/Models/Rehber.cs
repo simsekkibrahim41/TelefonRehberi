@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace TelefonRehberi.Models
 {
-    public class TelefonRehberi
+    public class Rehber
     {
 
         [Key]
