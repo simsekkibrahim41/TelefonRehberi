@@ -13,8 +13,8 @@ namespace Web.SeleniumTest.TelefonRehberi
             Rehber telefonRehberi = new Rehber();
             telefonRehberi.Ad = "İbrahim";
             telefonRehberi.Soyad = "Şimşek";
-            telefonRehberi.Telefon_Numarasi = "5367748301";
-            telefonRehberi.Fax_Numarasi = "534568978";
+            telefonRehberi.Telefon_Numarasi = "05367748301";
+            telefonRehberi.Fax_Numarasi = "0534568978";
             telefonRehberi.E_Mail = "ibrahimsimsek@gmail.com";
 
 
