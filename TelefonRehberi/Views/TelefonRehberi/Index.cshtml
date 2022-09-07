@@ -1,60 +1,36 @@
 ﻿@model IEnumerable<Rehber>
 
-@{
-    ViewData["Title"] = "Index";
-}
+<div class="wrap-table100">
+    <div class="table100">
+        <table>
+            <thead>
+                <a asp-action="AddOrEdit" id="yeni_kayit" class="btn float-right mb-4 text-white" style="background-color:#36304a"><p class="fw-bold">Yeni Kişi Ekle</p></a>
 
-<h4>Telefon Rehberi : Kişiler</h4>
-<hr />
-
-
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Ad)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Soyad)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Telefon_Numarasi)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Fax_Numarasi)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.E_Mail)
-            </th>
-            <th>
-                <a asp-action="AddOrEdit" id="yeni_kayit" class="btn btn-outline-success"><i class="fa fa-plus-square"></i> Yeni Kişi Ekle</a>
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Soyad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefon_Numarasi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fax_Numarasi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.E_Mail)
-            </td>
-            <td>
-                    <a asp-action="AddOrEdit" asp-route-id="@item.RehberId"><i class="fa fa-marker fa-lg"></i></a> |
-                
-                    <a asp-action="Delete" asp-route-id="@item.RehberId" class="text-danger ml-1" onclick="return confirm ('Bu Kaydı Silmek İstediğinizden Emin Misiniz?' )"><i class="fa fa-trash-alt fa-lg"></i></a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                <tr class="table100-head text-center">
+                    <th class="column1">@Html.DisplayNameFor(model => model.Ad)</th>
+                    <th class="column2">@Html.DisplayNameFor(model => model.Soyad)</th>
+                    <th class="column3">@Html.DisplayNameFor(model => model.Telefon_Numarasi)</th>
+                    <th width="50%" class="column4">@Html.DisplayNameFor(model => model.Fax_Numarasi)</th>
+                    <th class="column5">@Html.DisplayNameFor(model => model.E_Mail)</th>
+                    <th class="column6">İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="column1">@Html.DisplayFor(modelItem => item.Ad)</td>
+                        <td class="column2">@Html.DisplayFor(modelItem => item.Soyad)</td>
+                        <td class="column3">@Html.DisplayFor(modelItem => item.Telefon_Numarasi)</td>
+                        <td class="column4">@Html.DisplayFor(modelItem => item.Fax_Numarasi)</td>
+                        <td class="column5">@Html.DisplayFor(modelItem => item.E_Mail)</td>
+                        <td class="column6">
+                            <a asp-action="AddOrEdit" asp-route-id="@item.RehberId" class="btn btn-success btn-sm">Guncelle</a>
+                            <a asp-action="Delete" asp-route-id="@item.RehberId" class="btn btn-danger btn-sm" onclick="return confirm ('Bu Kaydı Silmek İstediğinizden Emin Misiniz?' )">Sil</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
