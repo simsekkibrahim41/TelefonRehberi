@@ -32,6 +32,7 @@ namespace Web.SeleniumTest.TelefonRehberi.Models
 
         public string AdHata { get; set; }
         public string TelHata { get; set; }
+        public string TelHata1 { get; set; }
 
         public string MailHata { get; set; }
 

@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-//builder.Services.AddPersistenceServices(builder.Configuration);
+
  builder.Services.AddDbContext<TelefonRehberiContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection")));
 

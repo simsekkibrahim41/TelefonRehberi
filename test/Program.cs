@@ -14,9 +14,10 @@ namespace Web.SeleniumTest.TelefonRehberi
             telefonRehberi.Ad = "İbrahim";
             telefonRehberi.Soyad = "Şimşek";
             telefonRehberi.Telefon_Numarasi = "05367748301";
+            
             telefonRehberi.Fax_Numarasi = "05367748301";
             telefonRehberi.E_Mail = "ibrahimsimsek@gmail.com";
-            
+
 
 
             Elements elements = new Elements();
@@ -32,6 +33,11 @@ namespace Web.SeleniumTest.TelefonRehberi
             elements.txtFaxNo = "txt_faxno";
             elements.txtEmail = "txt_email";
 
+
+            elements.AdHata = "ad_hata";
+            elements.TelHata = "tel_hata";
+            elements.MailHata = "email_hata";
+
             #endregion
 
 
@@ -41,9 +47,7 @@ namespace Web.SeleniumTest.TelefonRehberi
             elements.SilmeIslemi = "//tbody/tr[1]/td[6]/a[2]";
 
 
-            elements.AdHata = "/html/body/div/main/div/div/form/div[1]/div[1]/span";
-            elements.TelHata = "///html/body/div/main/div/div/form/div[2]/div[1]/span";
-            elements.MailHata = "/html/body/div/main/div/div/form/div[3]/span";
+
 
             #endregion
 
@@ -102,10 +106,11 @@ namespace Web.SeleniumTest.TelefonRehberi
             driver.FindElement(By.Id(elements.txtTelNo)).Clear();
             driver.FindElement(By.Id(elements.txtFaxNo)).Clear();
             driver.FindElement(By.Id(elements.txtEmail)).Clear();
+            Thread.Sleep(2000);
 
 
+            
 
-            Console.WriteLine("Yeni Kişi Bilgileri Giriliyor");
             driver.FindElement(By.Id(elements.txtAd)).SendKeys(telefonRehberi.Ad);//Ad alanına kişi bilgileri girliyor..
             driver.FindElement(By.Id(elements.txtSoyad)).SendKeys(telefonRehberi.Soyad);//Soyad alanına kişi bilgileri girliyor..
             driver.FindElement(By.Id(elements.txtTelNo)).SendKeys(telefonRehberi.Telefon_Numarasi);//Telno alanına kişi bilgileri girliyor..
@@ -125,7 +130,7 @@ namespace Web.SeleniumTest.TelefonRehberi
 
             Console.WriteLine("Silme İşlemi Test Ediliyor");
             driver.FindElement(By.XPath(elements.SilmeIslemi)).Click();
-            //Thread.Sleep(1000);
+            Thread.Sleep(2000);
 
             driver.SwitchTo().Alert().Accept();//sayfada çıkan alert'i kabul et
             Console.WriteLine("Silme Testi Başaryla Sonuçlandı");
@@ -137,8 +142,8 @@ namespace Web.SeleniumTest.TelefonRehberi
             Console.WriteLine("Listeye Geri Dön Butonu Test Ediliyor...");
             Console.WriteLine("Kişi Bilgileri Sayfasına Yönlendiriliyor...");
             driver.FindElement(By.XPath(elements.GuncelleSayfasinaGit)).Click();
+            Thread.Sleep(2000);
 
-            Thread.Sleep(1500);
             driver.FindElement(By.Id(elements.ClickGoBack)).Click();
             Console.WriteLine("Test Başarılı");
             Thread.Sleep(2000);
@@ -149,7 +154,7 @@ namespace Web.SeleniumTest.TelefonRehberi
             Console.WriteLine("Hata Kontrolu Test Ediliyor");
             Console.WriteLine("Kişi Bilgileri Sayfasına Yönlendiriliyor...");
             driver.FindElement(By.Id(elements.ClickYeni_Kayit)).Click();
-            Thread.Sleep(3500);
+            Thread.Sleep(2000);
 
             Console.WriteLine("Kişi Bilgileri Ekleniyor...");
 
@@ -158,9 +163,11 @@ namespace Web.SeleniumTest.TelefonRehberi
             driver.FindElement(By.Id(elements.txtFaxNo)).SendKeys(telefonRehberi.Fax_Numarasi);//Fax alanına kişi bilgileri girliyor..
             driver.FindElement(By.Id(elements.txtEmail)).SendKeys(telefonRehberi.E_Mail);//Email alanına kişi bilgileri girliyor..
 
+            driver.FindElement(By.Id(elements.ClickSave)).Click();
+
             string h_ad = "Bu Alanı Doldurmak Zorunludur.";
 
-            string hataliAd = driver.FindElement(By.XPath(elements.AdHata)).Text; // Veriyi Getir
+            string hataliAd = driver.FindElement(By.Id(elements.AdHata)).Text; // Veriyi Getir
             try
             {
                 Assert.AreEqual(h_ad, hataliAd);
@@ -171,32 +178,88 @@ namespace Web.SeleniumTest.TelefonRehberi
                 Console.WriteLine("\n\n Ad Ekleme İşlemi Hatalı!!! \n\n");
             }
 
+            
+
             #endregion
 
             #region Hata Testi Telefon
-            //Console.WriteLine("Hata Kontrolu Test Ediliyor");
-            //Console.WriteLine("Kişi Bilgileri Sayfasına Yönlendiriliyor...");
-            //driver.FindElement(By.Id(elements.ClickYeni_Kayit)).Click();
-            //Thread.Sleep(1500);
 
-            //string h_tel = "Telefon numarası 11 haneli olmalıdır";
 
-            //Console.WriteLine("Yeni Kişi Bilgileri Giriliyor");
-            //driver.FindElement(By.Id(elements.txtAd)).SendKeys(telefonRehberi.Ad);//Ad alanına kişi bilgileri girliyor..
-            //driver.FindElement(By.Id(elements.txtSoyad)).SendKeys(telefonRehberi.Soyad);//Soyad alanına kişi bilgileri girliyor..
-            ////driver.FindElement(By.Id(elements.txtTelNo)).SendKeys(telefonRehberi.Telefon_Numarasi);//Telno alanına kişi bilgileri girliyor..
-            //driver.FindElement(By.Id(elements.txtFaxNo)).SendKeys(telefonRehberi.Fax_Numarasi);//Fax alanına kişi bilgileri girliyor..
-            //driver.FindElement(By.Id(elements.txtEmail)).SendKeys(telefonRehberi.E_Mail);//Email alanına kişi bilgileri girliyor..
+            Console.WriteLine("Hata Kontrolu Test Ediliyor");
+            Console.WriteLine("Kişi Bilgileri Sayfasına Yönlendiriliyor...");
+            driver.Navigate().GoToUrl(elements.Link);
+            Thread.Sleep(2000);
+
+            driver.FindElement(By.Id(elements.ClickYeni_Kayit)).Click();
+
+            Console.WriteLine("Yeni Kişi Bilgileri Giriliyor");
+            driver.FindElement(By.Id(elements.txtAd)).SendKeys(telefonRehberi.Ad);//Ad alanına kişi bilgileri girliyor..
+            driver.FindElement(By.Id(elements.txtSoyad)).SendKeys(telefonRehberi.Soyad);//Soyad alanına kişi bilgileri girliyor..
+            
+            driver.FindElement(By.Id(elements.txtFaxNo)).SendKeys(telefonRehberi.Fax_Numarasi);//Fax alanına kişi bilgileri girliyor..
+            driver.FindElement(By.Id(elements.txtEmail)).SendKeys(telefonRehberi.E_Mail);//Email alanına kişi bilgileri girliyor..
+
+            driver.FindElement(By.Id(elements.ClickSave)).Click();
+
+            string h_tel = "Bu Alanı Doldurmak Zorunludur.";
+
+            string hatali_tel = driver.FindElement(By.Id(elements.TelHata)).Text; // Veriyi Getir
+            try
+            {
+                Assert.AreEqual(h_tel, hatali_tel);
+                Console.WriteLine("Telefon alanı hata kontrol testi başarılı bir şekilde tamamlandı.");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("\n\nTelefon Ekleme İşlemi Hatalı!!! \n\n");
+            }
 
 
 
 
             #endregion
 
-           
+
+            #region Hata Testi Telefon2
+            Console.WriteLine("Hata Kontrolu Test Ediliyor");
+            Console.WriteLine("Kişi Bilgileri Sayfasına Yönlendiriliyor...");
+            driver.Navigate().GoToUrl(elements.Link);
+            Thread.Sleep(2000);
+
+            driver.FindElement(By.Id(elements.ClickYeni_Kayit)).Click();
+            telefonRehberi.Telefon_Numarasi = "0536asd7748";
+            Console.WriteLine("Yeni Kişi Bilgileri Giriliyor");
+            driver.FindElement(By.Id(elements.txtAd)).SendKeys(telefonRehberi.Ad);//Ad alanına kişi bilgileri girliyor..
+            driver.FindElement(By.Id(elements.txtSoyad)).SendKeys(telefonRehberi.Soyad);//Soyad alanına kişi bilgileri girliyor..
+            driver.FindElement(By.Id(elements.txtTelNo)).SendKeys(telefonRehberi.Telefon_Numarasi);//Telno alanına kişi bilgileri girliyor..
+            driver.FindElement(By.Id(elements.txtFaxNo)).SendKeys(telefonRehberi.Fax_Numarasi);//Fax alanına kişi bilgileri girliyor..
+            driver.FindElement(By.Id(elements.txtEmail)).SendKeys(telefonRehberi.E_Mail);//Email alanına kişi bilgileri girliyor..
+
+            driver.FindElement(By.Id(elements.ClickSave)).Click();
+
+            string h_tel1 = "Telefon numarası format dışı";
+
+            string hatali_tel1 = driver.FindElement(By.Id(elements.TelHata)).Text; // Veriyi Getir
+            try
+            {
+                Assert.AreEqual(h_tel1, hatali_tel1);
+                Console.WriteLine("Telefon alanı hata kontrol testi başarılı bir şekilde tamamlandı.");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("\n\nTelefon Ekleme İşlemi Hatalı!!! \n\n");
+            }
+
+
+            #endregion
+
+
+
+
+
             Console.WriteLine("Anasayfaya Yönlendiriliyor...");
             driver.Navigate().GoToUrl(elements.Link);
-
+            Thread.Sleep(2000);
 
 
             #region Hata Testi Mail
@@ -207,6 +270,7 @@ namespace Web.SeleniumTest.TelefonRehberi
             Thread.Sleep(3500);
 
             Console.WriteLine("Kişi Bilgileri Ekleniyor...");
+            telefonRehberi.Telefon_Numarasi = "05367748301";
 
             Console.WriteLine("Yeni Kişi Bilgileri Giriliyor");
             driver.FindElement(By.Id(elements.txtAd)).SendKeys(telefonRehberi.Ad);//Ad alanına kişi bilgileri girliyor..
@@ -214,9 +278,12 @@ namespace Web.SeleniumTest.TelefonRehberi
             driver.FindElement(By.Id(elements.txtTelNo)).SendKeys(telefonRehberi.Telefon_Numarasi);//Telno alanına kişi bilgileri girliyor..
             driver.FindElement(By.Id(elements.txtFaxNo)).SendKeys(telefonRehberi.Fax_Numarasi);//Fax alanına kişi bilgileri girliyor..
 
+
+            driver.FindElement(By.Id(elements.ClickSave)).Click();
+
             string h_mail = "Bu Alanı Doldurmak Zorunludur.";
 
-            string hatalimail = driver.FindElement(By.XPath(elements.MailHata)).Text; // Veriyi Getir
+            string hatalimail = driver.FindElement(By.Id(elements.MailHata)).Text; // Veriyi Getir
             try
             {
                 Assert.AreEqual(h_mail, hatalimail);
@@ -233,16 +300,16 @@ namespace Web.SeleniumTest.TelefonRehberi
             #endregion
 
 
-           
-
-
-            
+            driver.Navigate().GoToUrl(elements.Link);
 
 
 
 
 
-            //driver.Quit();
+
+
+           driver.Quit();
+
 
 
 
@@ -253,5 +320,5 @@ namespace Web.SeleniumTest.TelefonRehberi
 
     }
 
-    
+
 }

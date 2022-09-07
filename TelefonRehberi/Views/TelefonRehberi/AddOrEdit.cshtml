@@ -8,41 +8,41 @@
             <div class="col-md-6">
                 <div class="mb-3">
                     <label class="form-label">Ad</label>
-                    <input asp-for="Ad" type="text" class="form-control" />
-                    <span asp-validation-for="Ad" class="text-danger"></span>
+                    <input asp-for="Ad" type="text" id="txt_ad" class="form-control" placeholder="ibrahim" />
+                    <span asp-validation-for="Ad" id="ad_hata" class="text-danger"></span>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="mb-3">
                     <label class="form-label">Soyad</label>
-                    <input asp-for="Soyad" type="text" class="form-control" placeholder="" />
-                    <span asp-validation-for="Soyad" class="text-danger"></span>
+                    <input asp-for="Soyad" type="text" id="txt_soyad" class="form-control" placeholder="simsek" />
+                    <span asp-validation-for="Soyad" id="soyad_hata" class="text-danger"></span>
                 </div>
             </div>
         </div>
 
         <div class="mb-3">
             <label class="form-label">Telefon Numarası</label>
-            <input asp-for="Telefon_Numarasi" type="tel" class="form-control" />
-            <span asp-validation-for="Telefon_Numarasi" class="text-danger"></span>
+            <input asp-for="Telefon_Numarasi" type="tel" id="txt_telno" class="form-control" placeholder="05367748301" />
+            <span asp-validation-for="Telefon_Numarasi" id="tel_hata" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label class="form-label">Fax Numarası</label>
-            <input asp-for="Fax_Numarasi" type="tel" class="form-control" />
-            <span asp-validation-for="Fax_Numarasi" class="text-danger"></span>
+            <input asp-for="Fax_Numarasi" type="tel" id="txt_faxno" class="form-control" placeholder="05367748301" />
+            <span asp-validation-for="Fax_Numarasi" id="fax_hata" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label class="form-label">Email</label>
-            <input asp-for="E_Mail" type="email" class="form-control" placeholder="simsekkibrahim41@outlook.com" />
-            <span asp-validation-for="E_Mail" class="text-danger"></span>
+            <input asp-for="E_Mail" type="email" id="txt_email" class="form-control" placeholder="simsekkibrahim41@outlook.com" />
+            <span asp-validation-for="E_Mail" id="email_hata" class="text-danger"></span>
         </div>
 
         <div class="form-row row">
             <div class="col-md-6">
-                <button type="submit" class="btn text-white w-100" style="background-color:#36304a">Kaydet</button>
+                <button type="submit" id="save" class="btn text-white w-100" style="background-color:#36304a">Kaydet</button>
             </div>
             <div class="col-md-6">
-                <a asp-action="Index" class="btn text-white w-100" style="background-color:#36304a">Listeye Geri Dön</a>
+                <a asp-action="Index" id="goback" class="btn text-white w-100" style="background-color:#36304a">Listeye Geri Dön</a>
             </div>
         </div>
     </form>

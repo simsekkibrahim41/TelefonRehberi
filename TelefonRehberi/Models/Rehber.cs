@@ -46,5 +46,8 @@ namespace TelefonRehberi.Models
         public string E_Mail { get; set; }
 
 
+        
+
+
     }
 }
