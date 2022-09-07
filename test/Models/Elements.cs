@@ -29,6 +29,12 @@ namespace Web.SeleniumTest.TelefonRehberi.Models
         public string GuncelleSayfasinaGit { get; set; }
         public string SilmeIslemi { get; set; }
         public string GoBackList { get; set; }
+
+        public string AdHata { get; set; }
+        public string TelHata { get; set; }
+
+        public string MailHata { get; set; }
+
         #endregion
 
 
